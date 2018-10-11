@@ -4,5 +4,5 @@ Rozjet spyder se udělá následovně:
 
 1. V příkazové řádce spustit "conda env create -f environment.yml"
 2. Vlézt do složky "newscrawler"
-3. Stahovač se spouští "scrapy crawl <nazev stranky>"
+3. Stahovač se spouští "scrapy crawl nazev_stranky"
 
