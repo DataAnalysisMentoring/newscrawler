@@ -16,7 +16,7 @@ class IhnedSpider(CrawlSpider):
     The local data is the date and article format.
     '''
 
-    name = 'idnes.cz'
+    name = 'idnes-ostrava'
     allowed_domains = ['idnes.cz']
 
     # the url from which we download the articles
@@ -34,7 +34,7 @@ class IhnedSpider(CrawlSpider):
         Rule(
             LinkExtractor(
                 allow=('ostrava.idnes.cz/',),
-                restrict_css=('.art-full',)
+                restrict_css=('.art-link',)
             ),
             callback='parse_item',
         ),
@@ -43,8 +43,8 @@ class IhnedSpider(CrawlSpider):
         # works the same as previous
         Rule(
             LinkExtractor(
-                allow=('.col-a',),
-                restrict_css=('.tac',)
+                allow=('ostrava.idnes.cz/archiv.aspx',),
+                restrict_css=('.ico-right',)
             )
         ),
     )
@@ -70,13 +70,20 @@ class IhnedSpider(CrawlSpider):
         # create new article from our defined item
         article = NewsItem()
 
+
+
         # parse the data from the website
-        article['title'] = response.css('h1.title:og:title').extract()[0]
-        date = response.css('div.counters:article:published_time').extract()[0]
-        article['date'] = self.transform_date(date)
-        found_article = response.css('div.bbtext p::text').extract()
-        article['article'] = self.transform_article(found_article)
-        article['keywords'] = response.css('meta[name=keywords]::attr(content)').extract()[0]
-        article['server'] = 'idnes.cz'
+        # article['title'] = response.css('h1::text').extract()[0]
+        # date = response.css('div.counters:article:published_time').extract()[0]
+        # article['date'] = self.transform_date(date)
+        # found_article = response.css('div.bbtext p::text').extract()
+        # article['article'] = self.transform_article(found_article)
+        # article['keywords'] = response.css('meta[name=keywords]::attr(content)').extract()[0]
+        # article['server'] = 'idnes.cz'
+
+        
+
+        print(response.css('h1::text').extract()[0])
+        print(response.url)
 
         return article

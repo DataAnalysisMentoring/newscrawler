@@ -79,4 +79,5 @@ class IhnedSpider(CrawlSpider):
         article['keywords'] = response.css('meta[name=keywords]::attr(content)').extract()[0]
         article['server'] = 'ihned.cz'
 
+
         return article

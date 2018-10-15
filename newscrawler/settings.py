@@ -70,7 +70,6 @@ ROBOTSTXT_OBEY = True
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'newscrawler.pipelines.NewsPipeline': 1,
-   'newscrawler.pipelines.ElectionPipeline': 5,
    'newscrawler.pipelines.JsonPipeline': 10,
 }
 
